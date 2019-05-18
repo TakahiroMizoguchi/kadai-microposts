@@ -21,7 +21,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     
-　　# 登録に成功するとリンク先@user(users#show)へと強制的に飛ばす。
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
       redirect_to @user 
