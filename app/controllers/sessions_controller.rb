@@ -23,7 +23,10 @@ class SessionsController < ApplicationController
   private
 
   def login(email, password)
+    # 入力フォームのemailと同じメールアドレスを持つユーザを検索し、@userへ代入する。
     @user = User.find_by(email: email)
+    # if @userによって@userが存在するかどうか確認。
+    # @userのパスワードが合っているかどうか確認。
     if @user && @user.authenticate(password)
       # ログイン成功
       session[:user_id] = @user.id

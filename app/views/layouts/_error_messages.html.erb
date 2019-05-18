@@ -1,6 +1,9 @@
 <% if model.errors.any? %>
   <div id="error_explanation" class="alert alert-warning">
     <ul class="mb-0">
+      <!-- model.errors.full_messagesでバリデーションで設定したエラーに対するメッセージ配列を取得。 -->
+      <!-- eachでエラーメッセージを１つずつ表示する。 -->
+      <!-- エラーの内容はmessage.errorsで取り出すことができる -->
       <% model.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>

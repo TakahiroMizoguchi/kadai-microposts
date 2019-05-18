@@ -1,3 +1,6 @@
+<!-- |message_type, message|という変数が使用 -->
+<!-- @user.saveが成功したら、message_typeには:successが代入され、messageには"ユーザを登録しました"が代入される。 -->
+<!-- 実際に表示されるのは"ユーザを登録しました"のみ。 -->
 <% flash.each do |message_type, message| %>
   <div class="alert alert-<%= message_type %>"><%= message %></div>
 <% end %>

@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
+  # アクションが実行される前に、前もって実行すべきアクションが記述されている。
+  # ユーザがログインしていなければ操作できないアクションが記述されている。
   before_action :require_user_logged_in, only: [:index, :show, :followings, :followers, :likes]
   
+  # idのカラムを基準にdesc(降順)にuserが表示される。今回の場合1ページ当たり、25件のユーザが表示。
   def index
     @users = User.order(id: :desc).page(params[:page]).per(25)
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) # userのレコードの１つを、paramsによってURLのパラメータやデータを全て受け取れる
     @microposts = @user.microposts.order(id: :desc).page(params[:page])
     counts(@user)
   end
@@ -17,11 +20,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
+    
+　　# 登録に成功するとリンク先@user(users#show)へと強制的に飛ばす。
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
-      redirect_to @user
+      redirect_to @user 
     else
+    # 登録に失敗した場合、newファイルを表示する。
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
     end

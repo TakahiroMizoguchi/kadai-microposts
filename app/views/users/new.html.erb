@@ -1,11 +1,13 @@
+<!-- ユーザ登録用のフォーム -->
 <div class="text-center">
   <h1>Sign up</h1>
 </div>
 
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
-
+    <!-- form_with(model: @user...) は Controllerのnewアクションで用意した @userを使用してフォームを作ることを明示している。 -->
     <%= form_with(model: @user, local: true) do |f| %>
+      <!-- model: f.objectは@userが代入されている。 -->
       <%= render 'layouts/error_messages', model: f.object %>
       
       <div class="form-group">

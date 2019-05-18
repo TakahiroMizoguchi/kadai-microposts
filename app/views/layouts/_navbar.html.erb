@@ -1,13 +1,18 @@
 <header class="mb-4">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Microposts</a>
+    
+    <!-- 横幅が狭いときに出るハンバーガーボタン -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- メニュー項目 -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto"></ul>
       <ul class="navbar-nav">
+        
+        <!-- ログインに成功しているときに表示される画面 -->
         <% if logged_in? %>
           <li class="nav-item"><%= link_to 'Users', users_path, class: 'nav-link' %></li>
           <li class="nav-item dropdown">
@@ -19,6 +24,8 @@
               <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
             </ul>
           </li>
+          
+        <!-- ログインしていない場合に表示される画面 -->
         <% else %>
           <li class="nav-item"><%= link_to 'Signup', signup_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link' %></li>
